@@ -1,0 +1,11 @@
+# Legacy requirements file for compatibility
+# Prefer using: uv sync
+#
+# If not using uv, install with:
+#   pip install -r requirements.txt
+#   pip install -e ..
+
+sphinx>=7.0
+sphinx-needs>=4.1.0
+sphinxcontrib-plantuml
+alabaster

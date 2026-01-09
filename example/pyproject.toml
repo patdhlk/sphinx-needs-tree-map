@@ -1,0 +1,21 @@
+[project]
+name = "sphinx-needs-tree-map-example"
+version = "0.1.0"
+description = "Example documentation for sphinx-needs-tree-map"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "sphinx>=7.0",
+    "sphinx-needs>=4.1.0",
+    "sphinxcontrib-plantuml",
+    "alabaster",
+    "sphinx-needs-tree-map",
+]
+
+[project.optional-dependencies]
+dev = [
+    "sphinx-autobuild",
+]
+
+[tool.uv.sources]
+sphinx-needs-tree-map = { path = "..", editable = true }

@@ -1,0 +1,36 @@
+# ubproject.toml - sphinx-needs configuration
+# Task Management System - Example Documentation
+#
+# This file contains all sphinx-needs specific configuration.
+# Sphinx-level settings (theme, extensions, etc.) remain in conf.py.
+
+[needs]
+# ID pattern: TYPE_MODULE_NNN format (e.g., REQ_AUTH_001)
+id_regex = "^[A-Z]+_[A-Z]+_[0-9]+"
+
+# Extra options available on all need objects
+extra_options = ["priority", "version", "component"]
+
+# Define need types for the project
+types = [
+    { directive = "req", title = "Requirement", prefix = "REQ_", color = "#BFD8D2", style = "node" },
+    { directive = "spec", title = "Specification", prefix = "SPEC_", color = "#FEDCD2", style = "node" },
+    { directive = "impl", title = "Implementation", prefix = "IMPL_", color = "#DF744A", style = "node" },
+    { directive = "test", title = "Test Case", prefix = "TC_", color = "#DCB239", style = "node" },
+    { directive = "story", title = "User Story", prefix = "US_", color = "#9B59B6", style = "node" },
+]
+
+# Custom link types for traceability
+extra_links = [
+    { option = "implements", incoming = "is implemented by", outgoing = "implements" },
+    { option = "verifies", incoming = "is verified by", outgoing = "verifies" },
+    { option = "derives", incoming = "derived from", outgoing = "derives" },
+]
+
+# Status values for tracking requirement lifecycle
+statuses = [
+    { name = "open", description = "Not yet started" },
+    { name = "in_progress", description = "Work in progress" },
+    { name = "implemented", description = "Implementation complete" },
+    { name = "verified", description = "Tested and verified" },
+]

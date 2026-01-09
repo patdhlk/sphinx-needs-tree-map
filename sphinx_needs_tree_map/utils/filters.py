@@ -101,9 +101,7 @@ def _eval_filter(
         }
 
         # Add helper functions
-        context["search"] = lambda pattern, field: _search_in_field(
-            need, pattern, field
-        )
+        context["search"] = lambda pattern, field: _search_in_field(need, pattern, field)
 
         # Safely evaluate the filter expression
         return bool(eval(filter_string, {"__builtins__": {}}, context))

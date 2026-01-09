@@ -75,9 +75,7 @@ class TestHierarchyBuilderDocument:
     def test_build_single_document(self, sample_needs):
         """Test building hierarchy with single document."""
         # Filter to just system requirements
-        filtered = {
-            k: v for k, v in sample_needs.items() if v["docname"] == "requirements/system"
-        }
+        filtered = {k: v for k, v in sample_needs.items() if v["docname"] == "requirements/system"}
 
         builder = HierarchyBuilder(needs=filtered, hierarchy_mode="document")
         tree = builder.build()

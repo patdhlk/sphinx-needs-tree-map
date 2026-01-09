@@ -325,9 +325,7 @@ class HierarchyBuilder:
         )
 
         # Group by type, then by status
-        by_type: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(
-            lambda: defaultdict(list)
-        )
+        by_type: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(lambda: defaultdict(list))
 
         for _need_id, need in self._iter_needs():
             need_dict = self._need_to_dict(need)

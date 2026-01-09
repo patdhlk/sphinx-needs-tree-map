@@ -427,9 +427,7 @@ class HierarchyBuilder:
             yield from self.needs.items()
         else:
             for need in self.needs:
-                if isinstance(need, dict):
-                    yield need.get("id", ""), need
-                elif hasattr(need, "get"):
+                if isinstance(need, dict) or hasattr(need, "get"):
                     yield need.get("id", ""), need
                 else:
                     yield str(need), need

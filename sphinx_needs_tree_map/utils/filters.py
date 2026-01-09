@@ -35,9 +35,7 @@ def filter_needs(
     else:
         needs_dict = {}
         for n in needs:
-            if isinstance(n, dict):
-                needs_dict[n.get("id", "")] = n
-            elif hasattr(n, "get"):
+            if isinstance(n, dict) or hasattr(n, "get"):
                 needs_dict[n.get("id", "")] = n
             else:
                 needs_dict[str(n)] = n

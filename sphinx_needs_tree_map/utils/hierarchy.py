@@ -427,7 +427,12 @@ class HierarchyBuilder:
             yield from self.needs.items()
         else:
             for need in self.needs:
-                yield need.get("id", ""), need
+                if isinstance(need, dict):
+                    yield need.get("id", ""), need
+                elif hasattr(need, "get"):
+                    yield need.get("id", ""), need
+                else:
+                    yield str(need), need
 
     def _need_to_dict(self, need: Any) -> dict[str, Any]:
         """Convert a need object to a dictionary."""

@@ -30,7 +30,17 @@ def filter_needs(
         Filtered needs as a dictionary.
     """
     # Convert to dict if needed
-    needs_dict = dict(needs) if hasattr(needs, "items") else {n.get("id", ""): n for n in needs}
+    if hasattr(needs, "items"):
+        needs_dict = dict(needs)
+    else:
+        needs_dict = {}
+        for n in needs:
+            if isinstance(n, dict):
+                needs_dict[n.get("id", "")] = n
+            elif hasattr(n, "get"):
+                needs_dict[n.get("id", "")] = n
+            else:
+                needs_dict[str(n)] = n
 
     result: dict[str, Any] = {}
 

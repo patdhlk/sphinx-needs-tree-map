@@ -161,7 +161,7 @@ def process_needtreemap_nodes(
             # Step 1: Filter needs based on directive options
             filtered_needs = filter_needs(
                 needs=all_needs,
-                app=app,
+                _app=app,
                 filter_string=options["filter"],
                 types=options["types"],
                 status=options["status"],
@@ -218,5 +218,7 @@ def _get_color_map(config: Any, color_by: str) -> dict[str, str]:
         Dictionary mapping values to colors.
     """
     if color_by == "status":
-        return config.needtreemap_status_colors
-    return config.needtreemap_colors
+        result: dict[str, str] = config.needtreemap_status_colors
+        return result
+    result = config.needtreemap_colors
+    return result

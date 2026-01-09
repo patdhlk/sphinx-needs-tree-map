@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import docutils.nodes
-from sphinx.application import Sphinx
 
 from sphinx_needs_tree_map.directives.needtreemap import (
     NeedTreeMapDirective,
@@ -20,10 +19,11 @@ from sphinx_needs_tree_map.directives.needtreemap import (
 )
 
 if TYPE_CHECKING:
+    from sphinx.application import Sphinx
     from sphinx.config import Config
 
 __version__ = "0.1.0"
-__all__ = ["setup", "__version__"]
+__all__ = ["__version__", "setup"]
 
 # Path to static files
 STATIC_DIR = Path(__file__).parent / "static"
@@ -135,6 +135,6 @@ def depart_needtreemap_node(self: Any, node: NeedTreeMapNode) -> None:
     pass
 
 
-def skip_needtreemap_node(self: Any, node: NeedTreeMapNode) -> None:
+def skip_needtreemap_node(_self: Any, _node: NeedTreeMapNode) -> None:
     """Skip rendering for non-HTML builders."""
     raise docutils.nodes.SkipNode

@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from collections.abc import Iterator
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Literal
 
 if TYPE_CHECKING:
-    pass
+    from collections.abc import Iterator
 
 
 @dataclass

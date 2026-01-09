@@ -124,7 +124,7 @@ class NeedTreeMapDirective(SphinxDirective):
 def process_needtreemap_nodes(
     app: Sphinx,
     doctree: nodes.document,
-    docname: str,
+    _docname: str,
 ) -> None:
     """Process all NeedTreeMapNode instances in the doctree.
 
@@ -134,7 +134,7 @@ def process_needtreemap_nodes(
     Args:
         app: The Sphinx application instance.
         doctree: The document tree being processed.
-        docname: Name of the document being processed.
+        _docname: Name of the document being processed (unused).
     """
     from sphinx_needs.data import SphinxNeedsData
 

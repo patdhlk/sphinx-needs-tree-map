@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import pytest
-
-from sphinx_needs_tree_map.utils.hierarchy import HierarchyBuilder, TreeNode
+from sphinx_needs_tree_map.utils.hierarchy import HierarchyBuilder
 
 
 class TestTreeNode:

@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from unittest.mock import MagicMock
 
-import pytest
-
 from sphinx_needs_tree_map.utils.filters import filter_needs
 
 
@@ -16,8 +14,8 @@ class TestFilterNeeds:
         """Test filtering by need type."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
             types=["req"],
         )
 
@@ -28,8 +26,8 @@ class TestFilterNeeds:
         """Test filtering by status."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
             status=["open"],
         )
 
@@ -40,8 +38,8 @@ class TestFilterNeeds:
         """Test filtering by multiple types."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
             types=["req", "spec"],
         )
 
@@ -51,8 +49,8 @@ class TestFilterNeeds:
         """Test filtering by filter expression."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
             filter_string="type == 'req'",
         )
 
@@ -63,8 +61,8 @@ class TestFilterNeeds:
         """Test filtering by complex filter expression."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
             filter_string="type == 'spec' and status == 'open'",
         )
 
@@ -75,8 +73,8 @@ class TestFilterNeeds:
         """Test that no filter criteria returns all needs."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
         )
 
         assert len(result) == len(sample_needs)
@@ -85,8 +83,8 @@ class TestFilterNeeds:
         """Test filtering with combined type and status."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
             types=["req"],
             status=["implemented"],
         )
@@ -98,8 +96,8 @@ class TestFilterNeeds:
         """Test filtering that returns no results."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,
-            app=app,
+            sample_needs,
+            app,
             types=["nonexistent"],
         )
 
@@ -109,8 +107,8 @@ class TestFilterNeeds:
         """Test that filter handles dict-based needs."""
         app = MagicMock()
         result = filter_needs(
-            needs=sample_needs,  # Already a dict
-            app=app,
+            sample_needs,  # Already a dict
+            app,
             types=["req"],
         )
 

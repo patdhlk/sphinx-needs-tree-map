@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 def filter_needs(
     needs: dict[str, Any] | Any,
-    app: Sphinx,
+    _app: Sphinx,
     filter_string: str | None = None,
     types: list[str] | None = None,
     status: list[str] | None = None,
@@ -20,7 +20,7 @@ def filter_needs(
 
     Args:
         needs: All needs (dict or NeedsView).
-        app: Sphinx application instance.
+        _app: Sphinx application instance (unused, kept for API compatibility).
         filter_string: sphinx-needs filter expression.
         types: List of need types to include.
         status: List of statuses to include.
@@ -30,10 +30,7 @@ def filter_needs(
         Filtered needs as a dictionary.
     """
     # Convert to dict if needed
-    if hasattr(needs, "items"):
-        needs_dict = dict(needs)
-    else:
-        needs_dict = {n.get("id", ""): n for n in needs}
+    needs_dict = dict(needs) if hasattr(needs, "items") else {n.get("id", ""): n for n in needs}
 
     result: dict[str, Any] = {}
 
@@ -61,9 +58,8 @@ def filter_needs(
                 continue
 
         # Apply filter string using sphinx-needs filter
-        if filter_string is not None:
-            if not _eval_filter(need, filter_string, needs_dict):
-                continue
+        if filter_string is not None and not _eval_filter(need, filter_string, needs_dict):
+            continue
 
         result[need_id] = need
 
@@ -73,14 +69,14 @@ def filter_needs(
 def _eval_filter(
     need: dict[str, Any],
     filter_string: str,
-    all_needs: dict[str, Any],
+    _all_needs: dict[str, Any],
 ) -> bool:
     """Evaluate a sphinx-needs filter expression.
 
     Args:
         need: The need to evaluate.
         filter_string: The filter expression.
-        all_needs: All needs for context.
+        _all_needs: All needs for context (unused, kept for future use).
 
     Returns:
         True if the need matches the filter.
@@ -131,10 +127,7 @@ def _search_in_field(need: dict[str, Any], pattern: str, field: str) -> bool:
     import re
 
     value = need.get(field, "")
-    if isinstance(value, list):
-        value = " ".join(str(v) for v in value)
-    else:
-        value = str(value)
+    value = " ".join(str(v) for v in value) if isinstance(value, list) else str(value)
 
     try:
         return bool(re.search(pattern, value, re.IGNORECASE))

@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
-from sphinx_needs_tree_map.utils.hierarchy import TreeNode
 from sphinx_needs_tree_map.utils.plotly_renderer import PlotlyTreemapRenderer
 
 
